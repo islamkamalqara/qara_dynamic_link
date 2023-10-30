@@ -45,16 +45,16 @@ List<ProductEntity> product_entity_list = [];
               Padding(padding: EdgeInsets.symmetric(vertical: 10),
                   child: Text(
                     'منتج أصلى',
-                    style:  TextStyle(color: AppColors.orange),
+                    style:  TextStyle(color: AppColors.orange,fontSize: 16),
                   )),
               Padding(padding: EdgeInsets.symmetric(vertical: 10),
                 child:  Divider(
                   color: AppColors.appGray,
-                  endIndent: 50,
-                  indent: 50,
+                  endIndent: 20,
+                  indent: 20,
                 ),
               ),
-              Padding(padding: EdgeInsets.symmetric(vertical: 10),
+              Padding(padding: EdgeInsets.symmetric(vertical: 5),
                   child: Text(
                     'علبة السويدى',
                     style:  TextStyle(
@@ -67,7 +67,7 @@ List<ProductEntity> product_entity_list = [];
                   ),
               ),
 
-              Padding(padding: EdgeInsets.symmetric(vertical: 10,horizontal: 50),
+              Padding(padding: EdgeInsets.symmetric(vertical: 10,horizontal: 20),
                   child: product_data(product_entity: product_entity_list)
               )
 
