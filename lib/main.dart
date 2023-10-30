@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       home:  HomeScreen(
-         qrCode: ,
+         qrCode: "qara.net?-ORDER-lob18a18gzxus687223zn123",
       ),
     );
   }

@@ -32,26 +32,28 @@ List<ProductEntity> product_entity_list = [];
     // TODO: implement build
     return AppScreen(
       title: "Firebase Hosting",
-      child: Container(
+      child: SingleChildScrollView(
+        child: Container(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              const CircleAvatar(
+          Padding(padding: EdgeInsets.symmetric(vertical: 10),
+          child:    const CircleAvatar(
                 backgroundImage: AssetImage('assets/Character.png'),
                 radius:  100.0,
+          ) ),
+              Padding(padding: EdgeInsets.symmetric(vertical: 10),
+                  child: Text(
+                    'منتج أصلى',
+                    style:  TextStyle(color: AppColors.orange),
+                  )),
+              Padding(padding: EdgeInsets.symmetric(vertical: 10),
+                child:  Divider(
+                  color: AppColors.appGray,
+                  endIndent: 50,
+                  indent: 50,
+                ),
               ),
-        Padding(padding: EdgeInsets.symmetric(vertical: 10),
-          child: Text(
-                'منتج أصلى',
-                style:  TextStyle(color: AppColors.orange),
-          )),
-             Padding(padding: EdgeInsets.symmetric(vertical: 10),
-             child:  Divider(
-               color: AppColors.appGray,
-               endIndent: 50,
-               indent: 50,
-             ),
-             ),
               Padding(padding: EdgeInsets.symmetric(vertical: 10),
                   child: Text(
                     'علبة السويدى',
@@ -60,19 +62,19 @@ List<ProductEntity> product_entity_list = [];
                         fontSize: 18,
                         fontWeight: FontWeight.bold),
                   )),
-        Padding(padding: EdgeInsets.symmetric(vertical: 10),
-          child:  Image.asset("assets/electrical-panel.png",
-                width: MediaQuery.of(context).size.width * 0.05,
-                height: MediaQuery.of(context).size.width * 0.05,),
-        ),
+              Padding(padding: EdgeInsets.symmetric(vertical: 10),
+                child:  Image.asset("assets/electrical-panel.png",
+                  ),
+              ),
 
-        Padding(padding: EdgeInsets.symmetric(vertical: 10,horizontal: 50),
-          child: product_data(product_entity: product_entity_list)
-        )
+              Padding(padding: EdgeInsets.symmetric(vertical: 10,horizontal: 50),
+                  child: product_data(product_entity: product_entity_list)
+              )
 
             ],
           ),
         ),
+      ),
     );
 
 
