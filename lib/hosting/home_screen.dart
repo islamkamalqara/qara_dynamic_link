@@ -9,6 +9,8 @@ import 'package:web_firebase_app/widgets/app_colors.dart';
 import 'package:web_firebase_app/widgets/app_screen.dart';
 import 'package:web_firebase_app/widgets/no_data.dart';
 
+import '../widgets/loading_widget.dart';
+
 class HomeScreen extends StatefulWidget{
   final String qrCode;
   HomeScreen({required this.qrCode});
@@ -40,11 +42,7 @@ class HomeScreenState extends State<HomeScreen>{
       bloc: publicScanBloc,
       builder: (context,state){
         if(state is Loading){
-          return   SizedBox(width: 30, height: 30, child: CircularProgressIndicator(
-              backgroundColor: AppColors.deepOrange,
-
-          )
-          );
+      return LoadingWidget();
         }
         else if(state is Done){
           return StreamBuilder<PublicScanModel>(
@@ -52,18 +50,13 @@ class HomeScreenState extends State<HomeScreen>{
               builder: (context,snapshot){
                 switch (snapshot.connectionState) {
                   case ConnectionState.none:
-                    return  Center(
-                          child:  SizedBox(width: 30, height: 30, child: CircularProgressIndicator(
-                            backgroundColor: AppColors.deepOrange,
-                          ) )
-                    );
+                    return LoadingWidget();
+
                   case ConnectionState.done:
                     return Text('');
                   case ConnectionState.waiting:
-                    return    SizedBox(width: 30, height: 30, child:CircularProgressIndicator(
-                        backgroundColor: AppColors.deepOrange,
-                    )
-                    );
+                    return LoadingWidget();
+
                   case ConnectionState.active:
                     if (snapshot.hasError) {
                       return Center(
