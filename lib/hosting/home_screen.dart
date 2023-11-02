@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:web_firebase_app/base/Helper/app_event.dart';
 import 'package:web_firebase_app/base/Helper/app_state.dart';
 import 'package:web_firebase_app/data/model/publicScanModel.dart';
-import 'package:web_firebase_app/entity/product_entity.dart';
 import 'package:web_firebase_app/logic/public_scan_bloc.dart';
 import 'package:web_firebase_app/widgets/app_colors.dart';
 import 'package:web_firebase_app/widgets/app_screen.dart';
@@ -29,8 +28,7 @@ class HomeScreenState extends State<HomeScreen>{
   void initState() {
 
   publicScanBloc.add(GetPublicScanData(
-    qr_value: /* "A101-00000005742"*/
-    "qara.net?-ORDER-lob18a18gzxus687223zn123"
+    qr_value: widget.qrCode
   ));
 
   super.initState();
@@ -63,8 +61,81 @@ class HomeScreenState extends State<HomeScreen>{
                         child: Text(snapshot.error.toString()),
                       );
                     }
-                    else if (snapshot.data?.status ==201) {
+                    else if (snapshot.data?.status == 201) {
+                      if(snapshot.data!.body![0].products!.isEmpty){
+                        return AppScreen(
+                          title: "Firebase Hosting",
+                          child: SingleChildScrollView(
+                            child: Container(
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: <Widget>[
+                                  Padding(padding: EdgeInsets.symmetric(vertical: 10),
+                                      child:    const CircleAvatar(
+                                        backgroundImage: AssetImage('assets/Character.png'),
+                                        radius:  100.0,
+                                      ) ),
+                                  Padding(padding: EdgeInsets.symmetric(vertical: 10),
+                                      child: Text(
+                                        'منتج أصلى',
+                                        style:  TextStyle(color: AppColors.orange,fontSize: 16),
+                                      )),
 
+                                ],
+                              ),
+                            ),
+                          ),
+                        );
+                      }else{
+                        return AppScreen(
+                          title: "Firebase Hosting",
+                          child: SingleChildScrollView(
+                            child: Container(
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: <Widget>[
+                                  Padding(padding: EdgeInsets.symmetric(vertical: 10),
+                                      child:    const CircleAvatar(
+                                        backgroundImage: AssetImage('assets/Character.png'),
+                                        radius:  100.0,
+                                      ) ),
+                                  Padding(padding: EdgeInsets.symmetric(vertical: 10),
+                                      child: Text(
+                                        'منتج أصلى',
+                                        style:  TextStyle(color: AppColors.orange,fontSize: 16),
+                                      )),
+                                  Padding(padding: EdgeInsets.symmetric(vertical: 10),
+                                    child:  Divider(
+                                      color: AppColors.appGray,
+                                      endIndent: 20,
+                                      indent: 20,
+                                    ),
+                                  ),
+                                  Padding(padding: EdgeInsets.symmetric(vertical: 5),
+                                      child: Text(
+                                        '${snapshot.data?.body?[0].products?[0].name}',
+                                        style:  TextStyle(
+                                            color: AppColors.black,
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.bold),
+                                      )),
+                                  Padding(padding: EdgeInsets.symmetric(vertical: 10),
+                                    child:  Image.asset("assets/electrical-panel.png",
+                                    ),
+                                  ),
+
+                                  Padding(padding: EdgeInsets.symmetric(vertical: 10,horizontal: 20),
+                                      child: product_data(
+                                          values: snapshot.data?.body?[0].products![0].values)
+                                  )
+
+                                ],
+                              ),
+                            ),
+                          ),
+                        );
+                      }
+                    } else
                       return AppScreen(
                         title: "Firebase Hosting",
                         child: SingleChildScrollView(
@@ -79,43 +150,16 @@ class HomeScreenState extends State<HomeScreen>{
                                     ) ),
                                 Padding(padding: EdgeInsets.symmetric(vertical: 10),
                                     child: Text(
-                                      'منتج أصلى',
+                                      'منتج غير أصلى',
                                       style:  TextStyle(color: AppColors.orange,fontSize: 16),
                                     )),
-                                Padding(padding: EdgeInsets.symmetric(vertical: 10),
-                                  child:  Divider(
-                                    color: AppColors.appGray,
-                                    endIndent: 20,
-                                    indent: 20,
-                                  ),
-                                ),
-                                Padding(padding: EdgeInsets.symmetric(vertical: 5),
-                                    child: Text(
-                                      '${snapshot.data?.body?[0].products?[0].name}',
-                                      style:  TextStyle(
-                                          color: AppColors.black,
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.bold),
-                                    )),
-                                Padding(padding: EdgeInsets.symmetric(vertical: 10),
-                                  child:  Image.asset("assets/electrical-panel.png",
-                                  ),
-                                ),
 
-                                Padding(padding: EdgeInsets.symmetric(vertical: 10,horizontal: 20),
-                                    child: product_data(
-                                        values: snapshot.data?.body?[0].products![0].values)
-                                )
 
                               ],
                             ),
                           ),
                         ),
                       );
-                    }
-                    else
-                      return no_data_widget(context: context,
-                      text: "product not origin");
                 }
               });
 
