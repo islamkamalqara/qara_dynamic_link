@@ -29,7 +29,7 @@ class PublicScanBloc extends Bloc<AppEvent,AppState>{
       emit(Loading());
       var response = await publicScanRepository.getPublicScanData(qr_value:event.qr_value);
       print("response : ${response?.toJson()}");
-      if(response!.status == 201 || response.status == 409 ){
+      if(response!.status == 201 ){
         _public_scan_data_subject.sink.add(response);
         emit( Done(model: response));
       }else{

@@ -12,7 +12,8 @@ Widget no_data_widget({BuildContext? context, String? text}) {
             child:  Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Icon(Icons.do_not_disturb_alt,size: 50,),
+               Padding(padding: EdgeInsets.symmetric(vertical: 10),
+               child:  Icon(Icons.do_not_disturb_alt,size: 50,),),
                 Text("${text}" ,
                   style: TextStyle(color: AppColors.black,fontWeight: FontWeight.bold),)
               ],
