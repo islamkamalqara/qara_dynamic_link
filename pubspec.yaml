@@ -68,6 +68,8 @@ flutter:
      - assets/qara_logo.png
      - assets/Character.png
      - assets/electrical-panel.png
+     - assets/apple_store.png
+     - assets/play_store.png
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
 

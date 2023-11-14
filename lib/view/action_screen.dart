@@ -1,40 +1,129 @@
+import 'dart:html';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:web_firebase_app/view/show_data_screen.dart';
+import 'package:web_firebase_app/base/Helper/app_event.dart';
 
-class ActionScreen extends StatelessWidget{
+import '../logic/public_scan_bloc.dart';
+
+class ActionScreen extends StatefulWidget{
   final String qrCode;
   ActionScreen({required this.qrCode});
   @override
+  State<StatefulWidget> createState() {
+    return ActionScreenState();
+  }
+
+}
+class ActionScreenState extends State<ActionScreen> {
+  String platform = "";
+  @override
+  void initState() {
+
+      platform = getOSInsideWeb();
+    print("platform : ${platform}");
+
+
+    String data ="";
+    window.history.replaceState(data, "", data);
+    super.initState();
+  }
+
+  String getOSInsideWeb() {
+    final userAgent = window.navigator.userAgent.toString().toLowerCase();
+    if( userAgent.contains("iphone"))  return "ios";
+    if( userAgent.contains("ipad")) return "ios";
+    if( userAgent.contains("android"))  return "Android";
+    return "Web";
+  }
+
+  @override
   Widget build(BuildContext context) {
+
     return Scaffold(
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Padding(
+                padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                child: Text("Operating System : ${platform}")),
 
-      body: Column(
-        children: [
-          Padding(
-              padding: EdgeInsets.symmetric(
-                  vertical: 10, horizontal: 20),
-              child: ClipOval(
-                child: Material(
-                  color: Colors.blue, // Button color
-                  child: InkWell(
-                    splashColor:
-                    Colors.red, // Splash color
-                    onTap: () {
+            Padding(
+                padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                child: Text("you can download App")),
 
-                      Navigator.pushReplacement(context,
-                          MaterialPageRoute(builder: (context)=> ShowDataScreen(qrCode: qrCode)));
-                    },
-                    child: SizedBox(
-                        width: 56,
-                        height: 56,
-                        child: Icon(Icons.ads_click)),
-                  ),
+
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+               InkWell(
+                          onTap: (){
+                            window.open('https://apps.apple.com/eg/app/hse-%D8%A8%D8%B1%D9%86%D8%A7%D9%85%D8%AC-%D8%AD%D9%88%D8%A7%D9%81%D8%B2-%D8%A7%D9%84%D8%B3%D9%88%D9%8A%D8%AF%D9%89/id6444411065', 'new tab');
+                            publicScanBloc.add(GetPublicScanData(qr_value: widget.qrCode));
+
+/*                            Navigator.pushAndRemoveUntil(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        ShowDataScreen(qrCode: widget.qrCode)),
+                                ModalRoute.withName("/IntialScreen"));*/
+                          },
+                          child: Image.asset('assets/apple_store.png',
+                            width: 130,
+                            height: 50,
+                            fit: BoxFit.fitWidth,
+                          ),
+
                 ),
-              )),
-        ],
+                InkWell(
+                          onTap: (){
+                            window.open('https://play.google.com/store/apps/details?id=com.qara.hse', 'new tab');
+                            publicScanBloc.add(GetPublicScanData(qr_value: widget.qrCode));
+
+                           /* Navigator.pushAndRemoveUntil(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        ShowDataScreen(qrCode: widget.qrCode)),
+                                ModalRoute.withName("/IntialScreen"));*/
+                          },
+                          child: Image.asset('assets/play_store.png',
+                            width: 130,
+                            height: 50,
+                            fit: BoxFit.fitWidth,),
+                         ),
+              ],
+            )
+
+
+            /*Padding(
+                padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                child: ClipOval(
+                  child: Material(
+                    color: Colors.blue, // Button color
+                    child: InkWell(
+                      splashColor: Colors.red, // Splash color
+                      onTap: () {
+                        publicScanBloc.add(GetPublicScanData(qr_value: widget.qrCode));
+
+                        Navigator.pushAndRemoveUntil(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    ShowDataScreen(qrCode: widget.qrCode)),
+                            ModalRoute.withName("/IntialScreen"));
+                      },
+                      child: SizedBox(
+                          width: 56, height: 56, child: Icon(Icons.ads_click)),
+                    ),
+                  ),
+                )),*/
+          ],
+        ),
       ),
     );
   }
-
 }
