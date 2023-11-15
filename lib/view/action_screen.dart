@@ -3,6 +3,7 @@ import 'dart:html';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+
 class ActionScreen extends StatefulWidget{
   final String qrCode;
   ActionScreen({required this.qrCode});
@@ -19,10 +20,33 @@ class ActionScreenState extends State<ActionScreen> {
       platform = getOSInsideWeb();
       switch(platform){
         case "Android":
-          window.open('https://play.google.com/store/apps/details?id=com.qara.hse', 'new tab');
+          switch(widget.qrCode){
+            case 'hse':
+              window.open('https://play.google.com/store/apps/details?id=com.qara.hse', 'new tab');
+              break;
+            case 'wncc':
+              window.open('https://play.google.com/store/apps/details?id=net.qara.wncc', 'new tab');
+              break;
+            case 'kz':
+              window.open('https://play.google.com/store/apps/details?id=net.qara.kz', 'new tab');
+              break;
+          }
+          // window.open('https://play.google.com/store/apps/details?id=com.qara.hse', 'new tab');
           break;
         case 'ios':
-          window.open('https://apps.apple.com/eg/app/hse-%D8%A8%D8%B1%D9%86%D8%A7%D9%85%D8%AC-%D8%AD%D9%88%D8%A7%D9%81%D8%B2-%D8%A7%D9%84%D8%B3%D9%88%D9%8A%D8%AF%D9%89/id6444411065', 'new tab');
+          switch(widget.qrCode){
+            case 'hse':
+              window.open('https://apps.apple.com/eg/app/hse-%D8%A8%D8%B1%D9%86%D8%A7%D9%85%D8%AC-%D8%AD%D9%88%D8%A7%D9%81%D8%B2-%D8%A7%D9%84%D8%B3%D9%88%D9%8A%D8%AF%D9%89/id6444411065', 'new tab');
+              break;
+            case 'wncc':
+              window.open('https://apps.apple.com/eg/app/%D8%A7%D8%B5%D8%AF%D9%82%D8%A7%D8%A1-%D8%A7%D9%84%D8%B3%D9%88%D9%8A%D8%AF%D9%8A/id1605464573', 'new tab');
+              break;
+            case 'kz':
+              window.open('https://apps.apple.com/eg/app/%D8%A7%D9%84%D9%85%D8%A4%D8%AA%D9%85%D8%B1-%D8%A7%D9%84%D8%A7%D9%82%D8%AA%D8%B5%D8%A7%D8%AF%D9%8A/id6443584694', 'new tab');
+              break;
+          }
+
+          // window.open('https://apps.apple.com/eg/app/hse-%D8%A8%D8%B1%D9%86%D8%A7%D9%85%D8%AC-%D8%AD%D9%88%D8%A7%D9%81%D8%B2-%D8%A7%D9%84%D8%B3%D9%88%D9%8A%D8%AF%D9%89/id6444411065', 'new tab');
           break;
         default:
           break;
@@ -65,8 +89,20 @@ class ActionScreenState extends State<ActionScreen> {
               children: [
                InkWell(
                           onTap: (){
-                            window.open('https://apps.apple.com/eg/app/hse-%D8%A8%D8%B1%D9%86%D8%A7%D9%85%D8%AC-%D8%AD%D9%88%D8%A7%D9%81%D8%B2-%D8%A7%D9%84%D8%B3%D9%88%D9%8A%D8%AF%D9%89/id6444411065', 'new tab');
-                            /*    publicScanBloc.add(GetPublicScanData(qr_value: widget.qrCode));
+                            switch(widget.qrCode){
+                              case 'hse':
+                                window.open('https://apps.apple.com/eg/app/hse-%D8%A8%D8%B1%D9%86%D8%A7%D9%85%D8%AC-%D8%AD%D9%88%D8%A7%D9%81%D8%B2-%D8%A7%D9%84%D8%B3%D9%88%D9%8A%D8%AF%D9%89/id6444411065', 'new tab');
+                                break;
+                              case 'wncc':
+                                window.open('https://apps.apple.com/eg/app/%D8%A7%D8%B5%D8%AF%D9%82%D8%A7%D8%A1-%D8%A7%D9%84%D8%B3%D9%88%D9%8A%D8%AF%D9%8A/id1605464573', 'new tab');
+                                break;
+                              case 'kz':
+                                window.open('https://apps.apple.com/eg/app/%D8%A7%D9%84%D9%85%D8%A4%D8%AA%D9%85%D8%B1-%D8%A7%D9%84%D8%A7%D9%82%D8%AA%D8%B5%D8%A7%D8%AF%D9%8A/id6443584694', 'new tab');
+                                break;
+                            }
+                              /*  window.open('https://apps.apple.com/eg/app/hse-%D8%A8%D8%B1%D9%86%D8%A7%D9%85%D8%AC-%D8%AD%D9%88%D8%A7%D9%81%D8%B2-%D8%A7%D9%84%D8%B3%D9%88%D9%8A%D8%AF%D9%89/id6444411065', 'new tab');
+
+                             publicScanBloc.add(GetPublicScanData(qr_value: widget.qrCode));
                             Navigator.pushAndRemoveUntil(
                                 context,
                                 MaterialPageRoute(
@@ -83,8 +119,19 @@ class ActionScreenState extends State<ActionScreen> {
                 ),
                 InkWell(
                           onTap: (){
-                            window.open('https://play.google.com/store/apps/details?id=com.qara.hse', 'new tab');
-                            /*    publicScanBloc.add(GetPublicScanData(qr_value: widget.qrCode));
+                            switch(widget.qrCode){
+                              case 'hse':
+                                window.open('https://play.google.com/store/apps/details?id=com.qara.hse', 'new tab');
+                                break;
+                              case 'wncc':
+                                window.open('https://play.google.com/store/apps/details?id=net.qara.wncc', 'new tab');
+                                break;
+                              case 'kz':
+                                window.open('https://play.google.com/store/apps/details?id=net.qara.kz', 'new tab');
+                                break;
+                            }
+                   /*             window.open('https://play.google.com/store/apps/details?id=com.qara.hse', 'new tab');
+                             publicScanBloc.add(GetPublicScanData(qr_value: widget.qrCode));
                             Navigator.pushAndRemoveUntil(
                                 context,
                                 MaterialPageRoute(
