@@ -2,7 +2,7 @@ import 'dart:html';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
+import 'package:flutter/services.dart';
 
 class ActionScreen extends StatefulWidget{
   final String qrCode;
@@ -14,44 +14,15 @@ class ActionScreen extends StatefulWidget{
 }
 class ActionScreenState extends State<ActionScreen> {
   String platform = "";
+  DateTime? dateTime;
   @override
   void initState() {
+     dateTime = DateTime.now();
 
-      platform = getOSInsideWeb();
-      switch(platform){
-        case "Android":
-          switch(widget.qrCode){
-            case 'hse':
-              window.open('https://play.google.com/store/apps/details?id=com.qara.hse', 'new tab');
-              break;
-            case 'wncc':
-              window.open('https://play.google.com/store/apps/details?id=net.qara.wncc', 'new tab');
-              break;
-            case 'kz':
-              window.open('https://play.google.com/store/apps/details?id=net.qara.kz', 'new tab');
-              break;
-          }
-          // window.open('https://play.google.com/store/apps/details?id=com.qara.hse', 'new tab');
-          break;
-        case 'ios':
-          switch(widget.qrCode){
-            case 'hse':
-              window.open('https://apps.apple.com/eg/app/hse-%D8%A8%D8%B1%D9%86%D8%A7%D9%85%D8%AC-%D8%AD%D9%88%D8%A7%D9%81%D8%B2-%D8%A7%D9%84%D8%B3%D9%88%D9%8A%D8%AF%D9%89/id6444411065', 'new tab');
-              break;
-            case 'wncc':
-              window.open('https://apps.apple.com/eg/app/%D8%A7%D8%B5%D8%AF%D9%82%D8%A7%D8%A1-%D8%A7%D9%84%D8%B3%D9%88%D9%8A%D8%AF%D9%8A/id1605464573', 'new tab');
-              break;
-            case 'kz':
-              window.open('https://apps.apple.com/eg/app/%D8%A7%D9%84%D9%85%D8%A4%D8%AA%D9%85%D8%B1-%D8%A7%D9%84%D8%A7%D9%82%D8%AA%D8%B5%D8%A7%D8%AF%D9%8A/id6443584694', 'new tab');
-              break;
-          }
+    // redirectuserDirectlyToStore();
 
-          // window.open('https://apps.apple.com/eg/app/hse-%D8%A8%D8%B1%D9%86%D8%A7%D9%85%D8%AC-%D8%AD%D9%88%D8%A7%D9%81%D8%B2-%D8%A7%D9%84%D8%B3%D9%88%D9%8A%D8%AF%D9%89/id6444411065', 'new tab');
-          break;
-        default:
-          break;
-      }
 
+    //use this part of code to hide query params from url
     String data ="";
     window.history.replaceState(data, "", data);
     super.initState();
@@ -65,21 +36,107 @@ class ActionScreenState extends State<ActionScreen> {
     return "Web";
   }
 
+void redirectUserDirectlyToStore(){
+  platform = getOSInsideWeb();
+  switch(platform){
+    case "Android":
+      switch(widget.qrCode){
+        case 'hse':
+          window.open('https://play.google.com/store/apps/details?id=com.qara.hse', 'new tab');
+          break;
+        case 'wncc':
+          window.open('https://play.google.com/store/apps/details?id=net.qara.wncc', 'new tab');
+          break;
+        case 'kz':
+          window.open('https://play.google.com/store/apps/details?id=net.qara.kz', 'new tab');
+          break;
+      }
+      break;
+    case 'ios':
+      switch(widget.qrCode){
+        case 'hse':
+          window.open('https://apps.apple.com/eg/app/hse-%D8%A8%D8%B1%D9%86%D8%A7%D9%85%D8%AC-%D8%AD%D9%88%D8%A7%D9%81%D8%B2-%D8%A7%D9%84%D8%B3%D9%88%D9%8A%D8%AF%D9%89/id6444411065', 'new tab');
+          break;
+        case 'wncc':
+          window.open('https://apps.apple.com/eg/app/%D8%A7%D8%B5%D8%AF%D9%82%D8%A7%D8%A1-%D8%A7%D9%84%D8%B3%D9%88%D9%8A%D8%AF%D9%8A/id1605464573', 'new tab');
+          break;
+        case 'kz':
+          window.open('https://apps.apple.com/eg/app/%D8%A7%D9%84%D9%85%D8%A4%D8%AA%D9%85%D8%B1-%D8%A7%D9%84%D8%A7%D9%82%D8%AA%D8%B5%D8%A7%D8%AF%D9%8A/id6443584694', 'new tab');
+          break;
+      }
+
+      break;
+    default:
+      break;
+  }
+}
+
+void redirctUserToAppleStore(){
+  switch(widget.qrCode){
+    case 'hse':
+      Clipboard.setData( ClipboardData(text: 'hse-${dateTime.toString()}')).whenComplete((){
+        window.open('https://apps.apple.com/eg/app/hse-%D8%A8%D8%B1%D9%86%D8%A7%D9%85%D8%AC-%D8%AD%D9%88%D8%A7%D9%81%D8%B2-%D8%A7%D9%84%D8%B3%D9%88%D9%8A%D8%AF%D9%89/id6444411065', 'new tab');
+
+      });
+      break;
+    case 'wncc':
+      Clipboard.setData(new ClipboardData(text: 'wncc-${dateTime.toString()}')).whenComplete((){
+        window.open('https://apps.apple.com/eg/app/%D8%A7%D8%B5%D8%AF%D9%82%D8%A7%D8%A1-%D8%A7%D9%84%D8%B3%D9%88%D9%8A%D8%AF%D9%8A/id1605464573', 'new tab');
+
+      });
+      break;
+    case 'kz':
+      Clipboard.setData(new ClipboardData(text: 'kz-${dateTime.toString()}')).whenComplete((){
+        window.open('https://apps.apple.com/eg/app/%D8%A7%D9%84%D9%85%D8%A4%D8%AA%D9%85%D8%B1-%D8%A7%D9%84%D8%A7%D9%82%D8%AA%D8%B5%D8%A7%D8%AF%D9%8A/id6443584694', 'new tab');
+
+      });
+      break;
+  }
+}
+
+void redirectUserToGooglePlay(){
+  switch(widget.qrCode){
+    case 'hse':
+      Clipboard.setData(new ClipboardData(text: 'hse-${dateTime.toString()}')).whenComplete((){
+        window.open('https://play.google.com/store/apps/details?id=com.qara.hse', 'new tab');
+
+      });
+      break;
+    case 'wncc':
+      Clipboard.setData(new ClipboardData(text: 'wncc-${dateTime.toString()}')).whenComplete((){
+        window.open('https://play.google.com/store/apps/details?id=net.qara.wncc', 'new tab');
+
+      });
+      break;
+    case 'kz':
+      Clipboard.setData(new ClipboardData(text: 'kz-${dateTime.toString()}')).whenComplete((){
+        window.open('https://play.google.com/store/apps/details?id=net.qara.kz', 'new tab');
+
+      });
+      break;
+  }
+}
+
   @override
   Widget build(BuildContext context) {
 
     return Scaffold(
       body: Center(
-        child: platform == "Web" ? Column(
+        child:/* platform == "Web" ? */Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Padding(
-                padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-                child: Text("Operating System : ${platform}")),
+                padding:
+                EdgeInsets.symmetric(vertical: 30),
+                child: const CircleAvatar(
+                  backgroundImage: AssetImage(
+                      'assets/Character.png'),
+                  radius: 100.0,
+                )),
 
             Padding(
-                padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                padding: EdgeInsets.symmetric(vertical: 30, horizontal: 20),
                 child: Text("you can download App")),
 
 
@@ -89,19 +146,9 @@ class ActionScreenState extends State<ActionScreen> {
               children: [
                InkWell(
                           onTap: (){
-                            switch(widget.qrCode){
-                              case 'hse':
-                                window.open('https://apps.apple.com/eg/app/hse-%D8%A8%D8%B1%D9%86%D8%A7%D9%85%D8%AC-%D8%AD%D9%88%D8%A7%D9%81%D8%B2-%D8%A7%D9%84%D8%B3%D9%88%D9%8A%D8%AF%D9%89/id6444411065', 'new tab');
-                                break;
-                              case 'wncc':
-                                window.open('https://apps.apple.com/eg/app/%D8%A7%D8%B5%D8%AF%D9%82%D8%A7%D8%A1-%D8%A7%D9%84%D8%B3%D9%88%D9%8A%D8%AF%D9%8A/id1605464573', 'new tab');
-                                break;
-                              case 'kz':
-                                window.open('https://apps.apple.com/eg/app/%D8%A7%D9%84%D9%85%D8%A4%D8%AA%D9%85%D8%B1-%D8%A7%D9%84%D8%A7%D9%82%D8%AA%D8%B5%D8%A7%D8%AF%D9%8A/id6443584694', 'new tab');
-                                break;
-                            }
-                              /*  window.open('https://apps.apple.com/eg/app/hse-%D8%A8%D8%B1%D9%86%D8%A7%D9%85%D8%AC-%D8%AD%D9%88%D8%A7%D9%81%D8%B2-%D8%A7%D9%84%D8%B3%D9%88%D9%8A%D8%AF%D9%89/id6444411065', 'new tab');
+                            redirctUserToAppleStore();
 
+                              /*
                              publicScanBloc.add(GetPublicScanData(qr_value: widget.qrCode));
                             Navigator.pushAndRemoveUntil(
                                 context,
@@ -109,28 +156,22 @@ class ActionScreenState extends State<ActionScreen> {
                                     builder: (context) =>
                                         ShowDataScreen(qrCode: widget.qrCode)),
                                 ModalRoute.withName("/IntialScreen"));*/
-                          },
-                          child: Image.asset('assets/apple_store.png',
-                            width: 130,
+                          },borderRadius: BorderRadius.circular(15),
+                          child:ClipRRect(
+                            borderRadius: BorderRadius.circular(8.0),
+                            child:  Image.asset('assets/apple_store.png',
+                            width: 100,
                             height: 50,
+
                             fit: BoxFit.fitWidth,
-                          ),
+                            )    ),
 
                 ),
                 InkWell(
                           onTap: (){
-                            switch(widget.qrCode){
-                              case 'hse':
-                                window.open('https://play.google.com/store/apps/details?id=com.qara.hse', 'new tab');
-                                break;
-                              case 'wncc':
-                                window.open('https://play.google.com/store/apps/details?id=net.qara.wncc', 'new tab');
-                                break;
-                              case 'kz':
-                                window.open('https://play.google.com/store/apps/details?id=net.qara.kz', 'new tab');
-                                break;
-                            }
-                   /*             window.open('https://play.google.com/store/apps/details?id=com.qara.hse', 'new tab');
+                            redirectUserToGooglePlay();
+
+                   /*
                              publicScanBloc.add(GetPublicScanData(qr_value: widget.qrCode));
                             Navigator.pushAndRemoveUntil(
                                 context,
@@ -139,18 +180,22 @@ class ActionScreenState extends State<ActionScreen> {
                                         ShowDataScreen(qrCode: widget.qrCode)),
                                 ModalRoute.withName("/IntialScreen"));*/
                           },
-                          child: Image.asset('assets/play_store.png',
-                            width: 130,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(8.0),
+                            child: Image.asset('assets/play_store.png',
+                            width: 100,
                             height: 50,
                             fit: BoxFit.fitWidth,),
-                         ),
+                          )  ),
               ],
             )
 
 
           ],
-        ) : Image.asset("assets/qara_logo.png"),
+        )
+       /*: Image.asset("assets/qara_logo.png")*/
       ),
     );
   }
+
 }
