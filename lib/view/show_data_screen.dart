@@ -2,6 +2,7 @@ import 'dart:html';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:web_firebase_app/base/Helper/app_event.dart';
 import 'package:web_firebase_app/base/Helper/app_state.dart';
 import 'package:web_firebase_app/data/model/publicScanModel.dart';
 import 'package:web_firebase_app/logic/public_scan_bloc.dart';
@@ -23,6 +24,10 @@ class ShowDataScreenState extends State<ShowDataScreen> {
 
   @override
   void initState() {
+    print("##qrCode : ${widget.qrCode}");
+    publicScanBloc.add(GetPublicScanData(
+      qr_value: widget.qrCode
+    ));
     String data = "";
     window.history.replaceState(data,"",data);
 

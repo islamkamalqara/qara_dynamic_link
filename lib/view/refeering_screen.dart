@@ -4,30 +4,26 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-class ActionScreen extends StatefulWidget{
-  final String qrCode;
-  ActionScreen({required this.qrCode});
+class RefeeringScreen extends StatefulWidget{
+  final String referringId;
+  final String appName;
+  RefeeringScreen(this.appName,[this.referringId= ""]);
   @override
   State<StatefulWidget> createState() {
-    return ActionScreenState();
+    return RefeeringScreenState();
   }
 }
-class ActionScreenState extends State<ActionScreen> {
+class RefeeringScreenState extends State<RefeeringScreen> {
   String platform = "";
-  DateTime? dateTime;
+
   @override
   void initState() {
-     dateTime = DateTime.now();
-
-    // redirectuserDirectlyToStore();
-
 
     //use this part of code to hide query params from url
     String data ="";
     window.history.replaceState(data, "", data);
     super.initState();
   }
-
   String getOSInsideWeb() {
     final userAgent = window.navigator.userAgent.toString().toLowerCase();
     if( userAgent.contains("iphone"))  return "ios";
@@ -36,11 +32,11 @@ class ActionScreenState extends State<ActionScreen> {
     return "Web";
   }
 
-void redirectUserDirectlyToStore(){
+/*  void redirectUserDirectlyToStore(){
   platform = getOSInsideWeb();
   switch(platform){
     case "Android":
-      switch(widget.qrCode){
+      switch(widget.referringId){
         case 'hse':
           window.open('https://play.google.com/store/apps/details?id=com.qara.hse', 'new tab');
           break;
@@ -53,7 +49,7 @@ void redirectUserDirectlyToStore(){
       }
       break;
     case 'ios':
-      switch(widget.qrCode){
+      switch(widget.referringId){
         case 'hse':
           window.open('https://apps.apple.com/eg/app/hse-%D8%A8%D8%B1%D9%86%D8%A7%D9%85%D8%AC-%D8%AD%D9%88%D8%A7%D9%81%D8%B2-%D8%A7%D9%84%D8%B3%D9%88%D9%8A%D8%AF%D9%89/id6444411065', 'new tab');
           break;
@@ -69,24 +65,24 @@ void redirectUserDirectlyToStore(){
     default:
       break;
   }
-}
+}*/
 
-void redirctUserToAppleStore(){
-  switch(widget.qrCode){
+   void redirctUserToAppleStore(){
+
+  switch(widget.appName){
     case 'hse':
-      Clipboard.setData( ClipboardData(text: 'hse-${dateTime.toString()}')).whenComplete((){
+      Clipboard.setData( ClipboardData(text: widget.referringId )).whenComplete((){
         window.open('https://apps.apple.com/eg/app/hse-%D8%A8%D8%B1%D9%86%D8%A7%D9%85%D8%AC-%D8%AD%D9%88%D8%A7%D9%81%D8%B2-%D8%A7%D9%84%D8%B3%D9%88%D9%8A%D8%AF%D9%89/id6444411065', 'new tab');
-
       });
       break;
     case 'wncc':
-      Clipboard.setData(new ClipboardData(text: 'wncc-${dateTime.toString()}')).whenComplete((){
+      Clipboard.setData(new ClipboardData(text: widget.referringId)).whenComplete((){
         window.open('https://apps.apple.com/eg/app/%D8%A7%D8%B5%D8%AF%D9%82%D8%A7%D8%A1-%D8%A7%D9%84%D8%B3%D9%88%D9%8A%D8%AF%D9%8A/id1605464573', 'new tab');
 
       });
       break;
     case 'kz':
-      Clipboard.setData(new ClipboardData(text: 'kz-${dateTime.toString()}')).whenComplete((){
+      Clipboard.setData(new ClipboardData(text:widget.referringId )).whenComplete((){
         window.open('https://apps.apple.com/eg/app/%D8%A7%D9%84%D9%85%D8%A4%D8%AA%D9%85%D8%B1-%D8%A7%D9%84%D8%A7%D9%82%D8%AA%D8%B5%D8%A7%D8%AF%D9%8A/id6443584694', 'new tab');
 
       });
@@ -94,22 +90,22 @@ void redirctUserToAppleStore(){
   }
 }
 
-void redirectUserToGooglePlay(){
-  switch(widget.qrCode){
+   void redirectUserToGooglePlay(){
+  switch(widget.appName){
     case 'hse':
-      Clipboard.setData(new ClipboardData(text: 'hse-${dateTime.toString()}')).whenComplete((){
+      Clipboard.setData(new ClipboardData(text: widget.referringId )).whenComplete((){
         window.open('https://play.google.com/store/apps/details?id=com.qara.hse', 'new tab');
 
       });
       break;
     case 'wncc':
-      Clipboard.setData(new ClipboardData(text: 'wncc-${dateTime.toString()}')).whenComplete((){
+      Clipboard.setData(new ClipboardData(text: widget.referringId )).whenComplete((){
         window.open('https://play.google.com/store/apps/details?id=net.qara.wncc', 'new tab');
 
       });
       break;
     case 'kz':
-      Clipboard.setData(new ClipboardData(text: 'kz-${dateTime.toString()}')).whenComplete((){
+      Clipboard.setData(new ClipboardData(text: widget.referringId )).whenComplete((){
         window.open('https://play.google.com/store/apps/details?id=net.qara.kz', 'new tab');
 
       });
