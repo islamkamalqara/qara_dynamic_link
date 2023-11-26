@@ -75,6 +75,9 @@ flutter:
      - assets/electrical-panel.png
      - assets/apple_store.png
      - assets/play_store.png
+     - assets/HSE_Logo.png
+     - assets/KZ_Logo.png
+     - assets/WNCC_logo.png
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
 
