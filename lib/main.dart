@@ -40,7 +40,7 @@ Widget getAppScreen(){
       if(appName != null)
         return RedirectToStoreScreen(  appName: appName!);
         else
-      return IntialScreen();
+      return IntialScreen(message:  "Page Not Found",);
       break;
     case 'ref' :
       if(appName != null)
@@ -50,13 +50,20 @@ Widget getAppScreen(){
           return  RefeeringScreen( appName!,id!);
 
       else
-        return IntialScreen();
+        return IntialScreen(message: "Page Not Found",);
 
       break;
+    case 'redirect':
+      return IntialScreen(message:  "Redirect Page",);
+      break;
       default:
-      return  IntialScreen();
+      return  IntialScreen(message: "Page Not Found",);
+
+
+
   }
 }
+
 void getParams() {
   var uri = Uri.dataFromString(html.window.location.href);
   Map<String, String> params = uri.queryParameters;
