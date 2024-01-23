@@ -37,7 +37,7 @@ Widget getAppScreen(){
         return RedirectToStoreScreen(  appName: appName!);
         else
       return IntialScreen(message:  "Page Not Found",);
-      break
+      break;
     case 'ref' :
       if(appName != null)
         if(id == null)
