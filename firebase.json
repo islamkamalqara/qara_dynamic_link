@@ -1,5 +1,6 @@
 {
   "hosting": {
+    "site": "qara-dynamic-link",
     "public": "build/web",
     "ignore": [
       "firebase.json",

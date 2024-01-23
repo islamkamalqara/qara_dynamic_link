@@ -196,7 +196,7 @@ class RefeeringScreenState extends State<RefeeringScreen> {
                                 SizedBox(height: 38,),
                                 InkWell(
                                   onTap: () {
-                                    redirctUserToAppleStore();
+                                    redirectUserToGooglePlay();
                                   },
                                   borderRadius: BorderRadius.circular(15),
                                   child: ClipRRect(
