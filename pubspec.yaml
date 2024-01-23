@@ -77,6 +77,17 @@ flutter:
      - assets/HSE_Logo.png
      - assets/KZ_Logo.png
      - assets/WNCC_logo.png
+     - assets/RABAH_logo.png
+     - assets/background.png
+     - assets/app_screen/hse_app_screen.png
+     - assets/app_screen/kz_app_screen.png
+     - assets/app_screen/rabeh_app_screen.png
+     - assets/app_screen/wncc_app_screen.png
+     - assets/app_screen/front_view_hand.png
+     - assets/view_hand.png
+     - assets/hse_home.png
+     - assets/google_play.png
+     - assets/web_hse_image.png
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
 
