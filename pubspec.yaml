@@ -69,6 +69,7 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
+     - assets/web/
      - assets/qara_logo.png
      - assets/Character.png
      - assets/electrical-panel.png

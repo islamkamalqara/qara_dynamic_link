@@ -109,7 +109,7 @@ class RefeeringScreenState extends State<RefeeringScreen> {
         Clipboard.setData(new ClipboardData(text: widget.referringId))
             .whenComplete(() {
           window.open(
-              'https://play.google.com/store/apps/details?id=net.qara.wncc',
+              'https://play.google.com/store/apps/details?id=shift.app.com.securityapp',
               'new tab');
         });
         break;
@@ -121,31 +121,31 @@ class RefeeringScreenState extends State<RefeeringScreen> {
       case 'HSE-KSA':
         welcomeAppText = "برنامج حوافز السويدى";
         appLogo = "assets/HSE_Logo.png";
-        appScreen = platform == "Web" ? "assets/web_hse_image.png" : "assets/app_screen/hse_app_screen.png";
+        appScreen = platform == "Web" ? "assets/web/hse_ksa_web.png" : "assets/app_screen/hse_app_screen.png";
         color = Color(0xFFEC6707);
         break;
       case 'WNCC':
         welcomeAppText = "برنامج حوافز وادي النيل";
         appLogo =  "assets/WNCC_logo.png";
-        appScreen = "assets/app_screen/wncc_app_screen.png";
+        appScreen = platform == "Web" ? "assets/web/wncc_web.png" : "assets/app_screen/wncc_app_screen.png";
         color = Color(0xFF88B71B);
         break;
       case 'KZ':
         welcomeAppText = "برنامج حوافز شركة كفر الزيات";
         appLogo =  "assets/KZ_Logo.png";
-        appScreen = "assets/app_screen/kz_app_screen.png";
+        appScreen = platform == "Web" ? "assets/web/kz_web.png" : "assets/app_screen/kz_app_screen.png";
         color = Color(0xFF49A33F);
         break;
       case 'RABEH':
         welcomeAppText = "برنامج حوافز رابح";
-        appScreen = "assets/app_screen/rabeh_app_screen.png";
+        appScreen = platform == "Web" ? "assets/web/rabeh_web.png" : "assets/app_screen/rabeh_app_screen.png";
         appLogo =  "assets/RABAH_logo.png";
         color = Color(0xFF49B28D);
         break;
       default:
         welcomeAppText = "برنامج حوافز السويدى";
         appLogo = "assets/HSE_Logo.png";
-        appScreen = platform == "Web" ? "assets/web_hse_image.png" : "assets/app_screen/hse_app_screen.png";
+        appScreen = platform == "Web" ?  "assets/web/hse_ksa_web.png" : "assets/app_screen/hse_app_screen.png";
         color = Color(0xFFEC6707);
         break;
     }
@@ -172,8 +172,61 @@ class RefeeringScreenState extends State<RefeeringScreen> {
                 child: AppIcon(appLogo: appLogo,appName: widget.appName,)),
 
             Expanded(
-                flex: 7,
+                flex:8,
                 child: platform == "Web" ?  Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Stack(
+                  children: [
+                  Padding(padding: EdgeInsets.symmetric(vertical: 30),
+                  child:   Image(
+                    image: AssetImage(appScreen),
+                    fit: BoxFit.cover,
+                  ),),
+                    Positioned(
+                      right: MediaQuery.of(context).size.width * 0.01,
+                      top: MediaQuery.of(context).size.width * 0.1,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          InkWell(
+                            onTap: () {
+                              redirctUserToAppleStore();
+                            },
+                            borderRadius: BorderRadius.circular(15),
+                            child: ClipRRect(
+                                borderRadius: BorderRadius.circular(8.0),
+                                child: Image.asset(
+                                  'assets/apple_store.png',
+                                  fit: BoxFit.fitWidth,
+                                )),
+                          ),
+                          SizedBox(height: 38,),
+                          InkWell(
+                            onTap: () {
+                              redirectUserToGooglePlay();
+                            },
+                            borderRadius: BorderRadius.circular(15),
+                            child: ClipRRect(
+                                borderRadius: BorderRadius.circular(8.0),
+                                child: Image.asset(
+                                  'assets/google_play.png',
+                                  fit: BoxFit.fitWidth,
+                                )),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Positioned(
+                      right: MediaQuery.of(context).size.width * 0.15,
+                      child: WelcomeWidget(welcomeText: welcomeAppText),
+                    )
+                  ],
+                )
+          ])
+
+           /*     Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -224,7 +277,7 @@ class RefeeringScreenState extends State<RefeeringScreen> {
 
 
                       ],
-                    )
+                    )*/
                     : Center(
                   child: SingleChildScrollView(
                     child: Column(
