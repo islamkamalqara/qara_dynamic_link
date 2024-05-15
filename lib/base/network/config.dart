@@ -5,4 +5,5 @@ String? inputQrValue = "";
 String? type = "";
 String? id = "";
 String? appName = "";
+String? qrValue = "";
 

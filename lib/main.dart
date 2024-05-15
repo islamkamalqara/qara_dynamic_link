@@ -67,5 +67,6 @@ void getParams() {
   type = params['type'];
   id = params['id'];
   appName = params['appName'];
+  qrValue = params['value'];
 
 }
