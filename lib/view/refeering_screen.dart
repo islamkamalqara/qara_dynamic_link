@@ -56,7 +56,7 @@ class RefeeringScreenState extends State<RefeeringScreen> {
         Clipboard.setData(new ClipboardData(text: widget.referringId))
             .whenComplete(() {
           window.open(
-              'https://apps.apple.com/eg/app/%D8%A7%D8%B5%D8%AF%D9%82%D8%A7%D8%A1-%D8%A7%D9%84%D8%B3%D9%88%D9%8A%D8%AF%D9%8A/id1605464573',
+              'https://qara.net/',
               'new tab');
         });
         break;
@@ -64,7 +64,7 @@ class RefeeringScreenState extends State<RefeeringScreen> {
         Clipboard.setData(new ClipboardData(text: widget.referringId))
             .whenComplete(() {
           window.open(
-              'https://apps.apple.com/eg/app/%D8%A7%D9%84%D9%85%D8%A4%D8%AA%D9%85%D8%B1-%D8%A7%D9%84%D8%A7%D9%82%D8%AA%D8%B5%D8%A7%D8%AF%D9%8A/id6443584694',
+              'https://apps.apple.com/eg/app/kz/id6474090555',
               'new tab');
         });
         break;
@@ -72,7 +72,7 @@ class RefeeringScreenState extends State<RefeeringScreen> {
         Clipboard.setData(new ClipboardData(text: widget.referringId))
             .whenComplete(() {
           window.open(
-              'https://apps.apple.com/eg/app/%D8%A7%D9%84%D9%85%D8%A4%D8%AA%D9%85%D8%B1-%D8%A7%D9%84%D8%A7%D9%82%D8%AA%D8%B5%D8%A7%D8%AF%D9%8A/id6443584694',
+              'https://qara.net/',
               'new tab');
         });
         break;
@@ -109,7 +109,7 @@ class RefeeringScreenState extends State<RefeeringScreen> {
         Clipboard.setData(new ClipboardData(text: widget.referringId))
             .whenComplete(() {
           window.open(
-              'https://play.google.com/store/apps/details?id=shift.app.com.securityapp',
+              'https://qara.net/',
               'new tab');
         });
         break;

@@ -55,6 +55,11 @@ class RedirectToStoreScreenState extends State<RedirectToStoreScreen> {
           case 'KZ':
             window.open('https://play.google.com/store/apps/details?id=net.qara.kz', 'new tab');
             break;
+          case 'RABEH':
+            window.open(
+                'https://qara.net/',
+                'new tab');
+            break;
         }
         break;
       case 'ios':
@@ -63,26 +68,21 @@ class RedirectToStoreScreenState extends State<RedirectToStoreScreen> {
             window.open('https://apps.apple.com/eg/app/hse-%D8%A8%D8%B1%D9%86%D8%A7%D9%85%D8%AC-%D8%AD%D9%88%D8%A7%D9%81%D8%B2-%D8%A7%D9%84%D8%B3%D9%88%D9%8A%D8%AF%D9%89/id6444411065', 'new tab');
             break;
           case 'WNCC':
-            window.open('https://apps.apple.com/eg/app/%D8%A7%D8%B5%D8%AF%D9%82%D8%A7%D8%A1-%D8%A7%D9%84%D8%B3%D9%88%D9%8A%D8%AF%D9%8A/id1605464573', 'new tab');
+            window.open(
+                'https://qara.net/',
+                'new tab');
             break;
           case 'KZ':
-            window.open('https://apps.apple.com/eg/app/%D8%A7%D9%84%D9%85%D8%A4%D8%AA%D9%85%D8%B1-%D8%A7%D9%84%D8%A7%D9%82%D8%AA%D8%B5%D8%A7%D8%AF%D9%8A/id6443584694', 'new tab');
+            window.open(
+                'https://apps.apple.com/eg/app/kz/id6474090555', 'new tab');
+            break;
+          case 'RABEH':
+            window.open(
+                'https://qara.net/',
+                'new tab');
             break;
         }
         break;
-  /*    case 'Web':
-        switch(widget.appName){
-          case 'HSE-KSA':
-            window.open('https://apps.apple.com/eg/app/hse-%D8%A8%D8%B1%D9%86%D8%A7%D9%85%D8%AC-%D8%AD%D9%88%D8%A7%D9%81%D8%B2-%D8%A7%D9%84%D8%B3%D9%88%D9%8A%D8%AF%D9%89/id6444411065', 'new tab');
-            break;
-          case 'WNCC':
-            window.open('https://apps.apple.com/eg/app/%D8%A7%D8%B5%D8%AF%D9%82%D8%A7%D8%A1-%D8%A7%D9%84%D8%B3%D9%88%D9%8A%D8%AF%D9%8A/id1605464573', 'new tab');
-            break;
-          case 'KZ':
-            window.open('https://apps.apple.com/eg/app/%D8%A7%D9%84%D9%85%D8%A4%D8%AA%D9%85%D8%B1-%D8%A7%D9%84%D8%A7%D9%82%D8%AA%D8%B5%D8%A7%D8%AF%D9%8A/id6443584694', 'new tab');
-            break;
-        }
-        break;*/
       default:
         break;
     }
@@ -129,10 +129,18 @@ class RedirectToStoreScreenState extends State<RedirectToStoreScreen> {
         window.open('https://apps.apple.com/eg/app/hse-%D8%A8%D8%B1%D9%86%D8%A7%D9%85%D8%AC-%D8%AD%D9%88%D8%A7%D9%81%D8%B2-%D8%A7%D9%84%D8%B3%D9%88%D9%8A%D8%AF%D9%89/id6444411065', 'new tab');
         break;
       case 'WNCC':
-        window.open('https://apps.apple.com/eg/app/%D8%A7%D8%B5%D8%AF%D9%82%D8%A7%D8%A1-%D8%A7%D9%84%D8%B3%D9%88%D9%8A%D8%AF%D9%8A/id1605464573', 'new tab');
+        window.open(
+            'https://qara.net/',
+            'new tab');
         break;
       case 'KZ':
-        window.open('https://apps.apple.com/eg/app/%D8%A7%D9%84%D9%85%D8%A4%D8%AA%D9%85%D8%B1-%D8%A7%D9%84%D8%A7%D9%82%D8%AA%D8%B5%D8%A7%D8%AF%D9%8A/id6443584694', 'new tab');
+        window.open(
+           'https://apps.apple.com/eg/app/kz/id6474090555', 'new tab');
+        break;
+      case 'RABEH':
+        window.open(
+            'https://qara.net/',
+            'new tab');
         break;
     }
   }
@@ -151,6 +159,10 @@ class RedirectToStoreScreenState extends State<RedirectToStoreScreen> {
         break;
       case 'KZ':
         window.open('https://play.google.com/store/apps/details?id=net.qara.kz',
+            'new tab');
+      case 'RABEH':
+        window.open(
+            'https://qara.net/',
             'new tab');
         break;
     }
