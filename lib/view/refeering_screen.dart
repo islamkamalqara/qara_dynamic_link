@@ -3,6 +3,10 @@ import 'dart:html';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:web_firebase_app/widgets/app_icon.dart';
+import 'package:web_firebase_app/widgets/no_data.dart';
+import 'package:web_firebase_app/widgets/powered_by_widget.dart';
+import 'package:web_firebase_app/widgets/welcome_widget.dart';
 
 class RefeeringScreen extends StatefulWidget {
   final String referringId;
@@ -16,9 +20,14 @@ class RefeeringScreen extends StatefulWidget {
 
 class RefeeringScreenState extends State<RefeeringScreen> {
   String platform = "";
-
+  String welcomeAppText = "";
+  String appLogo = "";
+  String appScreen = "";
+  Color? color ;
   @override
   void initState() {
+    platform = getOSInsideWeb();
+    getAppIcon();
     //use this part of code to hide query params from url
     String data = "";
     window.history.replaceState(data, "", data);
@@ -32,41 +41,6 @@ class RefeeringScreenState extends State<RefeeringScreen> {
     if (userAgent.contains("android")) return "Android";
     return "Web";
   }
-
-/*  void redirectUserDirectlyToStore(){
-  platform = getOSInsideWeb();
-  switch(platform){
-    case "Android":
-      switch(widget.referringId){
-        case 'HSE-KSA':
-          window.open('https://play.google.com/store/apps/details?id=com.qara.hse', 'new tab');
-          break;
-        case 'WNCC':
-          window.open('https://play.google.com/store/apps/details?id=net.qara.wncc', 'new tab');
-          break;
-        case 'KZ':
-          window.open('https://play.google.com/store/apps/details?id=net.qara.kz', 'new tab');
-          break;
-      }
-      break;
-    case 'ios':
-      switch(widget.referringId){
-        case 'HSE-KSA':
-          window.open('https://apps.apple.com/eg/app/hse-%D8%A8%D8%B1%D9%86%D8%A7%D9%85%D8%AC-%D8%AD%D9%88%D8%A7%D9%81%D8%B2-%D8%A7%D9%84%D8%B3%D9%88%D9%8A%D8%AF%D9%89/id6444411065', 'new tab');
-          break;
-        case 'WNCC':
-          window.open('https://apps.apple.com/eg/app/%D8%A7%D8%B5%D8%AF%D9%82%D8%A7%D8%A1-%D8%A7%D9%84%D8%B3%D9%88%D9%8A%D8%AF%D9%8A/id1605464573', 'new tab');
-          break;
-        case 'KZ':
-          window.open('https://apps.apple.com/eg/app/%D8%A7%D9%84%D9%85%D8%A4%D8%AA%D9%85%D8%B1-%D8%A7%D9%84%D8%A7%D9%82%D8%AA%D8%B5%D8%A7%D8%AF%D9%8A/id6443584694', 'new tab');
-          break;
-      }
-
-      break;
-    default:
-      break;
-  }
-}*/
 
   void redirctUserToAppleStore() {
     switch (widget.appName) {
@@ -82,7 +56,7 @@ class RefeeringScreenState extends State<RefeeringScreen> {
         Clipboard.setData(new ClipboardData(text: widget.referringId))
             .whenComplete(() {
           window.open(
-              'https://apps.apple.com/eg/app/%D8%A7%D8%B5%D8%AF%D9%82%D8%A7%D8%A1-%D8%A7%D9%84%D8%B3%D9%88%D9%8A%D8%AF%D9%8A/id1605464573',
+              'https://qara.net/',
               'new tab');
         });
         break;
@@ -90,7 +64,15 @@ class RefeeringScreenState extends State<RefeeringScreen> {
         Clipboard.setData(new ClipboardData(text: widget.referringId))
             .whenComplete(() {
           window.open(
-              'https://apps.apple.com/eg/app/%D8%A7%D9%84%D9%85%D8%A4%D8%AA%D9%85%D8%B1-%D8%A7%D9%84%D8%A7%D9%82%D8%AA%D8%B5%D8%A7%D8%AF%D9%8A/id6443584694',
+              'https://apps.apple.com/eg/app/kz/id6474090555',
+              'new tab');
+        });
+        break;
+      case 'RABEH':
+        Clipboard.setData(new ClipboardData(text: widget.referringId))
+            .whenComplete(() {
+          window.open(
+              'https://qara.net/',
               'new tab');
         });
         break;
@@ -123,111 +105,264 @@ class RefeeringScreenState extends State<RefeeringScreen> {
               'new tab');
         });
         break;
+      case 'RABEH':
+        Clipboard.setData(new ClipboardData(text: widget.referringId))
+            .whenComplete(() {
+          window.open(
+              'https://qara.net/',
+              'new tab');
+        });
+        break;
     }
   }
 
-  String getAppIcon() {
+   getAppIcon() {
     switch (widget.appName) {
       case 'HSE-KSA':
-        return "assets/HSE_Logo.png";
+        welcomeAppText = "برنامج حوافز السويدى";
+        appLogo = "assets/HSE_Logo.png";
+        appScreen = platform == "Web" ? "assets/web/hse_ksa_web.png" : "assets/app_screen/hse_app_screen.png";
+        color = Color(0xFFEC6707);
         break;
       case 'WNCC':
-        return "assets/WNCC_logo.png";
+        welcomeAppText = "برنامج حوافز وادي النيل";
+        appLogo =  "assets/WNCC_logo.png";
+        appScreen = platform == "Web" ? "assets/web/wncc_web.png" : "assets/app_screen/wncc_app_screen.png";
+        color = Color(0xFF88B71B);
         break;
       case 'KZ':
-        return "assets/KZ_Logo.png";
+        welcomeAppText = "برنامج حوافز شركة كفر الزيات";
+        appLogo =  "assets/KZ_Logo.png";
+        appScreen = platform == "Web" ? "assets/web/kz_web.png" : "assets/app_screen/kz_app_screen.png";
+        color = Color(0xFF49A33F);
+        break;
+      case 'RABEH':
+        welcomeAppText = "برنامج حوافز رابح";
+        appScreen = platform == "Web" ? "assets/web/rabeh_web.png" : "assets/app_screen/rabeh_app_screen.png";
+        appLogo =  "assets/RABAH_logo.png";
+        color = Color(0xFF49B28D);
         break;
       default:
-        return "assets/Character.png";
+        welcomeAppText = "برنامج حوافز السويدى";
+        appLogo = "assets/HSE_Logo.png";
+        appScreen = platform == "Web" ?  "assets/web/hse_ksa_web.png" : "assets/app_screen/hse_app_screen.png";
+        color = Color(0xFFEC6707);
+        break;
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-          child: /* platform == "Web" ? */ Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Padding(
-              padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-              child: Text(
-                "Welcome",
-                style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
-              )),
-          Padding(
-              padding: EdgeInsets.symmetric(vertical: 20),
-              child: CircleAvatar(
-                radius: 100.0,
-                backgroundColor: Colors
-                    .transparent, // Set background color to transparent to see the image
-                child: ClipOval(
-                  child: Image(
-                    image: AssetImage(getAppIcon()),
+    return  Scaffold(
+      body:   appScreen == "" || appLogo == ""  ?  NoDataWidget( text: "No Data !!")
+          : Container(
+        width: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.height,
+        decoration: BoxDecoration(
+            image: DecorationImage(
+                image: AssetImage("assets/background.png",),
+                fit: BoxFit.fill
+            )
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: [
+            Expanded(
+                flex: 1,
+                child: AppIcon(appLogo: appLogo,appName: widget.appName,)),
+
+            Expanded(
+                flex:8,
+                child: platform == "Web" ?  Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Stack(
+                  children: [
+                  Padding(padding: EdgeInsets.symmetric(vertical: 30),
+                  child:   Image(
+                    image: AssetImage(appScreen),
                     fit: BoxFit.cover,
-                    // You can change the BoxFit to modify how the image fits within the circle
-                  ),
-                ),
-              )),
-          Padding(
-              padding: EdgeInsets.symmetric(vertical: 30, horizontal: 20),
-              child: Text("you can download App")),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              InkWell(
-                onTap: () {
-                  redirctUserToAppleStore();
-
-                  /*
-                             publicScanBloc.add(GetPublicScanData(qr_value: widget.qrCode));
-                            Navigator.pushAndRemoveUntil(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        ShowDataScreen(qrCode: widget.qrCode)),
-                                ModalRoute.withName("/IntialScreen"));*/
-                },
-                borderRadius: BorderRadius.circular(15),
-                child: ClipRRect(
-                    borderRadius: BorderRadius.circular(8.0),
-                    child: Image.asset(
-                      'assets/apple_store.png',
-                      width: 100,
-                      height: 50,
-                      fit: BoxFit.fitWidth,
-                    )),
-              ),
-              InkWell(
-                  onTap: () {
-                    redirectUserToGooglePlay();
-
-                    /*
-                             publicScanBloc.add(GetPublicScanData(qr_value: widget.qrCode));
-                            Navigator.pushAndRemoveUntil(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        ShowDataScreen(qrCode: widget.qrCode)),
-                                ModalRoute.withName("/IntialScreen"));*/
-                  },
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(8.0),
-                    child: Image.asset(
-                      'assets/play_store.png',
-                      width: 100,
-                      height: 50,
-                      fit: BoxFit.fitWidth,
+                  ),),
+                    Positioned(
+                      right: MediaQuery.of(context).size.width * 0.01,
+                      top: MediaQuery.of(context).size.width * 0.1,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          InkWell(
+                            onTap: () {
+                              redirctUserToAppleStore();
+                            },
+                            borderRadius: BorderRadius.circular(15),
+                            child: ClipRRect(
+                                borderRadius: BorderRadius.circular(8.0),
+                                child: Image.asset(
+                                  'assets/apple_store.png',
+                                  fit: BoxFit.fitWidth,
+                                )),
+                          ),
+                          SizedBox(height: 38,),
+                          InkWell(
+                            onTap: () {
+                              redirectUserToGooglePlay();
+                            },
+                            borderRadius: BorderRadius.circular(15),
+                            child: ClipRRect(
+                                borderRadius: BorderRadius.circular(8.0),
+                                child: Image.asset(
+                                  'assets/google_play.png',
+                                  fit: BoxFit.fitWidth,
+                                )),
+                          ),
+                        ],
+                      ),
                     ),
-                  )),
-            ],
-          )
-        ],
-      )
-          /*: Image.asset("assets/qara_logo.png")*/
-          ),
+                    Positioned(
+                      right: MediaQuery.of(context).size.width * 0.15,
+                      child: WelcomeWidget(welcomeText: welcomeAppText),
+                    )
+                  ],
+                )
+          ])
+
+           /*     Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Expanded(
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                InkWell(
+                                  onTap: () {
+                                    redirctUserToAppleStore();
+                                  },
+                                  borderRadius: BorderRadius.circular(15),
+                                  child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(8.0),
+                                      child: Image.asset(
+                                        'assets/apple_store.png',
+                                        fit: BoxFit.fitWidth,
+                                      )),
+                                ),
+                                SizedBox(height: 38,),
+                                InkWell(
+                                  onTap: () {
+                                    redirectUserToGooglePlay();
+                                  },
+                                  borderRadius: BorderRadius.circular(15),
+                                  child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(8.0),
+                                      child: Image.asset(
+                                        'assets/google_play.png',
+                                        fit: BoxFit.fitWidth,
+                                      )),
+                                ),
+                              ],
+                            )),
+
+                        Expanded(child: Center(
+                          child: Image(
+                            image: AssetImage(appScreen),
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                        ),
+                        Expanded(child:  WelcomeWidget(welcomeText: welcomeAppText),
+                        ),
+
+
+
+
+
+                      ],
+                    )*/
+                    : Center(
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: [
+
+                        Stack(
+                          children: [
+                           Image(
+                                image: AssetImage(appScreen),
+                                fit: BoxFit.cover,
+                              ),
+
+                            Positioned(
+                              top:0,
+                              left: 10,
+                              right: 10,
+                              child:  Column(
+                                children: [
+                                  WelcomeWidget(welcomeText: welcomeAppText),
+
+                                ],
+                              ),
+                            ),
+                            Positioned(
+                              bottom: 0,
+                              left: 10,
+                              right: 10,
+                              child:  Column(
+                                children: [
+
+                                  InkWell(
+                                    onTap: () {
+                                      switch(platform){
+                                        case 'Android':
+                                          redirectUserToGooglePlay();
+                                          break;
+                                        case 'ios':
+                                          redirctUserToAppleStore();
+                                          break;
+                                      }
+                                    },
+
+                                    child: Container(
+                                      width: MediaQuery.of(context).size.width * 0.5,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(10),
+                                        color: color ,
+                                      ),
+                                      padding: EdgeInsets.all(10),
+                                      child: Text("حمل التطبيق الآن",
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontFamily: 'Tajawal',
+                                          fontSize: 18.0,
+                                          fontStyle: FontStyle.normal,
+                                          fontWeight: FontWeight.w700,
+                                        ),textAlign: TextAlign.center,
+                                      ),
+                                    ),
+                                  ),
+
+                                ],
+                              ),
+                            )
+                          ],
+                        )
+
+
+
+                      ],
+                    ),
+                  ),
+                )
+            ),
+
+            Expanded(
+                flex: 1,
+                child:  Center(child:  PoweredByWidget(),))
+
+          ],
+        ),
+      ) ,
+
     );
+
   }
+
 }

@@ -1,5 +1,9 @@
 {
   "projects": {
-    "default": "webapp-27cb3"
-  }
+    "default": "sweedyksaproduction",
+    "staging": "sweedyksaproduction",
+    "qaraDynamicLink": "sweedyksaproduction"
+  },
+  "targets": {},
+  "etags": {}
 }

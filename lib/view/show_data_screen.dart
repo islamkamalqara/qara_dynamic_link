@@ -155,7 +155,7 @@ class ShowDataScreenState extends State<ShowDataScreen> {
                 }
               });
         } else if (state is ErrorLoading) {
-          return no_data_widget(context: context, text: "Invalid QrCode !!");
+          return NoDataWidget(text: "Invalid QrCode !!");
         }
         return Container();
       },

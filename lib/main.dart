@@ -1,4 +1,3 @@
-import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:web_firebase_app/base/network/config.dart';
@@ -18,7 +17,6 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    print("#inputQrValue : ${inputQrValue}");
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
@@ -26,10 +24,8 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: getAppScreen()
-      /* inputQrValue == null ? IntialScreen() : ActionScreen(
-         qrCode: inputQrValue!
-      ),*/
+      home:  getAppScreen() // RefeeringScreen("sa")
+
     );
   }
 }
@@ -40,7 +36,7 @@ Widget getAppScreen(){
       if(appName != null)
         return RedirectToStoreScreen(  appName: appName!);
         else
-      return IntialScreen();
+      return IntialScreen(message:  "Page Not Found",);
       break;
     case 'ref' :
       if(appName != null)
@@ -50,13 +46,20 @@ Widget getAppScreen(){
           return  RefeeringScreen( appName!,id!);
 
       else
-        return IntialScreen();
+        return IntialScreen(message: "Page Not Found",);
 
       break;
+    case 'redirect':
+      return IntialScreen(message:  "Redirect Page",);
+      break;
       default:
-      return  IntialScreen();
+      return  IntialScreen(message: "Page Not Found",);
+
+
+
   }
 }
+
 void getParams() {
   var uri = Uri.dataFromString(html.window.location.href);
   Map<String, String> params = uri.queryParameters;
@@ -64,5 +67,6 @@ void getParams() {
   type = params['type'];
   id = params['id'];
   appName = params['appName'];
+  qrValue = params['value'];
 
 }
