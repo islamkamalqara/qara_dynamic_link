@@ -63,7 +63,6 @@ Widget getAppScreen(){
 void getParams() {
   var uri = Uri.dataFromString(html.window.location.href);
   Map<String, String> params = uri.queryParameters;
- // inputQrValue = params['qr'];
   type = params['type'];
   id = params['id'];
   appName = params['appName'];

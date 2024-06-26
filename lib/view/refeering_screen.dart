@@ -225,59 +225,6 @@ class RefeeringScreenState extends State<RefeeringScreen> {
                   ],
                 )
           ])
-
-           /*     Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Expanded(
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                InkWell(
-                                  onTap: () {
-                                    redirctUserToAppleStore();
-                                  },
-                                  borderRadius: BorderRadius.circular(15),
-                                  child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(8.0),
-                                      child: Image.asset(
-                                        'assets/apple_store.png',
-                                        fit: BoxFit.fitWidth,
-                                      )),
-                                ),
-                                SizedBox(height: 38,),
-                                InkWell(
-                                  onTap: () {
-                                    redirectUserToGooglePlay();
-                                  },
-                                  borderRadius: BorderRadius.circular(15),
-                                  child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(8.0),
-                                      child: Image.asset(
-                                        'assets/google_play.png',
-                                        fit: BoxFit.fitWidth,
-                                      )),
-                                ),
-                              ],
-                            )),
-
-                        Expanded(child: Center(
-                          child: Image(
-                            image: AssetImage(appScreen),
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                        ),
-                        Expanded(child:  WelcomeWidget(welcomeText: welcomeAppText),
-                        ),
-
-
-
-
-
-                      ],
-                    )*/
                     : Center(
                   child: SingleChildScrollView(
                     child: Column(
