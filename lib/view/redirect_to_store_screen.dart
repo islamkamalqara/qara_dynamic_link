@@ -65,7 +65,10 @@ class RedirectToStoreScreenState extends State<RedirectToStoreScreen> {
       case 'ios':
         switch(widget.appName){
           case 'HSE-KSA':
-            window.open('https://apps.apple.com/eg/app/hse-%D8%A8%D8%B1%D9%86%D8%A7%D9%85%D8%AC-%D8%AD%D9%88%D8%A7%D9%81%D8%B2-%D8%A7%D9%84%D8%B3%D9%88%D9%8A%D8%AF%D9%89/id6444411065', 'new tab');
+            window.open(
+              'https://apps.apple.com/eg/app/hse-rewards/id6444411065',
+              //  'https://apps.apple.com/eg/app/hse-%D8%A8%D8%B1%D9%86%D8%A7%D9%85%D8%AC-%D8%AD%D9%88%D8%A7%D9%81%D8%B2-%D8%A7%D9%84%D8%B3%D9%88%D9%8A%D8%AF%D9%89/id6444411065',
+                'new tab');
             break;
           case 'WNCC':
             window.open(
@@ -126,7 +129,10 @@ class RedirectToStoreScreenState extends State<RedirectToStoreScreen> {
   void redirctUserToAppleStore() {
     switch (widget.appName) {
       case 'HSE-KSA':
-        window.open('https://apps.apple.com/eg/app/hse-%D8%A8%D8%B1%D9%86%D8%A7%D9%85%D8%AC-%D8%AD%D9%88%D8%A7%D9%81%D8%B2-%D8%A7%D9%84%D8%B3%D9%88%D9%8A%D8%AF%D9%89/id6444411065', 'new tab');
+        window.open(
+            'https://apps.apple.com/eg/app/hse-rewards/id6444411065',
+          // 'https://apps.apple.com/eg/app/hse-%D8%A8%D8%B1%D9%86%D8%A7%D9%85%D8%AC-%D8%AD%D9%88%D8%A7%D9%81%D8%B2-%D8%A7%D9%84%D8%B3%D9%88%D9%8A%D8%AF%D9%89/id6444411065',
+            'new tab');
         break;
       case 'WNCC':
         window.open(
